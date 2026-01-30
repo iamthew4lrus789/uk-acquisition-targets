@@ -1,0 +1,117 @@
+# UK Acquisition Targets - Query Configuration
+#
+# This file defines default search parameters and saved search profiles.
+# Command-line arguments override these settings.
+#
+# Usage:
+#   python find_companies.py --config config.yaml --profile it_retirement
+#   python find_companies.py --profile hvac_local --radius 20  # Override radius
+
+# Default settings (used when no profile specified)
+defaults:
+  output_format: csv
+  company_status: Active
+  # radius_miles: 10  # Uncomment to set default radius
+  # min_company_age_years: 5  # Uncomment to set default company age filter
+
+# Named search profiles
+# Use with: python find_companies.py --profile PROFILE_NAME
+profiles:
+  # IT consultancies with older owners (potential retirement exits)
+  it_retirement:
+    description: "IT consultancies, 60+ owners, established businesses"
+    postcode: "SW1A 1AA"
+    radius_miles: 10
+    sic_codes:
+      - 62020  # IT consultancy
+      - 62090  # Other IT services
+    min_company_age_years: 5
+    min_psc_age: 60
+    output_format: csv
+
+  # IT consultancies, broader search
+  it_broad:
+    description: "All IT consultancies in area"
+    postcode: "SW1A 1AA"
+    radius_miles: 15
+    sic_codes:
+      - 62012  # Software development
+      - 62020  # IT consultancy
+      - 62090  # Other IT services
+    output_format: csv
+
+  # HVAC businesses for acquisition
+  hvac_local:
+    description: "HVAC businesses, older owners, micro/small"
+    postcode: "EC2R 8AH"
+    radius_miles: 15
+    sic_codes:
+      - 43220  # Plumbing, HVAC installation
+      - 43290  # Other construction installation
+    min_company_age_years: 10
+    min_psc_age: 50
+    max_psc_age: 70
+    account_categories:
+      - MICRO ENTITY
+      - SMALL
+    output_format: xlsx
+
+  # Engineering firms
+  engineering:
+    description: "Engineering design and consultancy"
+    postcode: "EC2R 8AH"
+    radius_miles: 20
+    sic_codes:
+      - 71121  # Engineering design
+      - 71122  # Engineering related consultancy
+    min_company_age_years: 5
+    output_format: csv
+
+  # Advertising/marketing agencies
+  marketing:
+    description: "Advertising and marketing agencies"
+    postcode: "SW1A 1AA"
+    radius_miles: 10
+    sic_codes:
+      - 73110  # Advertising agencies
+      - 73120  # Media representation
+    min_company_age_years: 3
+    account_categories:
+      - MICRO ENTITY
+      - SMALL
+    output_format: csv
+
+  # Example: Very specific search
+  established_micro:
+    description: "Established micro entities with retirement-age owners"
+    postcode: "SW1A 1AA"
+    radius_miles: 10
+    min_company_age_years: 10
+    max_company_age_years: 40
+    min_psc_age: 55
+    max_psc_age: 75
+    account_categories:
+      - MICRO ENTITY
+    output_format: xlsx
+
+# Common SIC codes reference (not used by program, just for reference)
+sic_reference:
+  construction:
+    43220: "Plumbing, heat and air-conditioning installation"
+    43290: "Other construction installation"
+
+  it_services:
+    62012: "Business and domestic software development"
+    62020: "Information technology consultancy activities"
+    62090: "Other information technology service activities"
+
+  professional:
+    71121: "Engineering design activities for industrial process and production"
+    71122: "Other engineering activities"
+    73110: "Advertising agencies"
+    73120: "Media representation services"
+
+  other:
+    69201: "Accounting and auditing activities"
+    70221: "Financial management"
+    82990: "Other business support service activities"

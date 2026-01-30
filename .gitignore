@@ -1,0 +1,36 @@
+# Virtual environment
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data files (too large for git)
+raw/
+processed/
+
+# Output files
+companies_*.csv
+companies_*.xlsx
+companies_*.txt
+results.csv
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Keep directory structure
+!raw/.gitkeep
+!processed/.gitkeep

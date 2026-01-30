@@ -1,0 +1,13 @@
+[MASTER]
+disable=
+    C0103,  # Invalid name (allow short variable names)
+    C0114,  # Missing module docstring (allow for scripts)
+    R0913,  # Too many arguments (dataclasses need many fields)
+    R0801,  # Duplicate code (acceptable for setup vs query)
+    W0718,  # Broad exception caught (intentional for user scripts)
+
+max-line-length=100
+
+[DESIGN]
+max-args=10
+max-locals=20
